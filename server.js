@@ -16,20 +16,19 @@ app.get('/', (req, res) => {
 
 // 2. Meta (Instagram) Webhook Doğrulaması (GET sorğusu - qırmızı xətanı aradan qaldıran hissə)
 app.get('/webhook', (req, res) => {
-  const mode = req.query['hub.mode'];
-  const token = req.query['hub.verify_token'];
-  const challenge = req.query['hub.challenge'];
+    const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
+    const mode = req.query['hub.mode'];
+    const token = req.query['hub.verify_token'];
+    const challenge = req.query['hub.challenge'];
 
-  if (mode && token) {
-    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-      console.log('WEBHOOK_VERIFIED');
-      res.status(200).send(challenge);
-    } else {
-      res.sendStatus(403);
+    if (mode && token) {
+        if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+            console.log('WEBHOOK_VERIFIED');
+            res.status(200).send(challenge);
+        } else {
+            res.sendStatus(403);
+        }
     }
-  } else {
-    res.sendStatus(400);
-  }
 });
 
 // 3. Instagram-dan gələn mesajları qəbul edən hissə (POST sorğusu)
