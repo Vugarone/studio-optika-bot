@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
+const VERIFY_TOKEN = "studio-optika-gizli_kod_123";
 const CONTACT_PHONE = "055 201-23-37";
 
 // 1. Webhook Doğrulaması
